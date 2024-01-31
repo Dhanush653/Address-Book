@@ -2,11 +2,11 @@ package com.bridgelabz.addressbook;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class AddressBook {
-    private ArrayList<Contact> contacts = new ArrayList<>();
+    ArrayList<Contact> contacts = new ArrayList<>();
     public Scanner scanner = new Scanner(System.in);
 
     public void addContactFromConsole() {
-        System.out.println("Enter contact details:");
+        System.out.println("Enter Additional contact details");
         System.out.print("First Name: ");
         String firstName = scanner.nextLine();
         System.out.print("Last Name: ");
@@ -25,17 +25,16 @@ public class AddressBook {
         String email = scanner.nextLine();
 
         Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-        addContact(newContact);
+        contacts.add(newContact);
     }
-
-    public void addContact(Contact contact) {
-        contacts.add(contact);
-        System.out.println("Contact added successfully!");
-    }
-
-    public void displayContacts() {
-        for (Contact contact : contacts) {
+    public void displayContacts(){
+        for(Contact contact : contacts){
             contact.displayContact();
+            System.out.println();
         }
     }
+
 }
+
+
+
