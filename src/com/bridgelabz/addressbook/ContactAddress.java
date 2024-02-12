@@ -13,6 +13,7 @@ public class ContactAddress {
         Firstname = firstname;
         Lastname = lastname;
         Address = address;
+        City=city;
         Zip = zip;
         Phnum = phnum;
         Email = email;
