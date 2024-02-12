@@ -59,8 +59,6 @@ class AddressBook {
             System.out.println("1. Add Contact");
             System.out.println("2. Edit Contact");
             System.out.println("3. Delete Contact");
-            System.out.println("4. Print All Contacts");
-            System.out.println("5. Back to Main Menu");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -70,19 +68,17 @@ class AddressBook {
                     addContact();
                     break;
                 case 2:
-                    editContact("Dhanush");
+                    editContact();
                     break;
                 case 3:
                     deleteContact();
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
+                    System.out.println("Please enter a valid option.");
             }
         }
     }
-
     private void addContact() {
-        // Implementation of adding a new contact
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Details: Firstname, Lastname, Address, City, Zip, Phnum, Email");
         String firstName = scanner.next();
@@ -96,11 +92,12 @@ class AddressBook {
         System.out.println("Contact added successfully");
     }
 
-    private void editContact(String firstname) {
-        // Implementation of editing a contact
-        Scanner scanner = new Scanner(System.in);
+    private void editContact() {
+        System.out.println("Enter the First name of the contact to edit:");
+        String firstName = scanner.nextLine();
+        boolean contactFound = false;
         for (ContactAddress contact : contacts) {
-            if (contact.getFirstName().equalsIgnoreCase(firstname)) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
                 System.out.println("Editing Contacts" + contact);
                 System.out.println("Enter your details: Firstname, Lastname, Address, City, Zip, Phnum, Email");
                 contact.setFirstName(scanner.next());
@@ -114,7 +111,6 @@ class AddressBook {
             }
         }
     }
-
     private void deleteContact() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the firstname to delete:");
@@ -127,9 +123,7 @@ class AddressBook {
                 System.out.println("Contact Deleted");
                 break;
             }
-
         }
     }
-
 }
 
