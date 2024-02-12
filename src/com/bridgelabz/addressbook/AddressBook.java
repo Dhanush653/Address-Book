@@ -25,6 +25,14 @@ public class AddressBook {
         else
             System.out.println("No changes done in the Contact Data");
 
+        System.out.println("Enter 1 to Delete ");
+        Scanner scanner3 = new Scanner (System.in);
+        int toDelete = scanner3.nextInt();
+        if(toDelete == 1){
+            delcontact();
+        }
+        else
+            System.out.println("No contacts deleted");
     }
     public static void addnewContact(){
         System.out.println("Enter Details \n Firstname \n lastname \n address \n city \n zip, \n phonenum \n email \n");
@@ -35,14 +43,15 @@ public class AddressBook {
         int zip = scanner.nextInt();
         long phnum = scanner.nextLong();
         //consume the newline character left in the buffer
+
         String email = scanner.nextLine();
         ContactAddress obj1 = new ContactAddress(fname, lname, address, city, zip, phnum, email);
         System.out.println(obj1);
     }
-    public static void editcontact(String firstname){
-        for(ContactAddress contact: addressbook){
-            if(contact.getFirstName().equalsIgnoreCase(firstname)){
-                System.out.println("Editing Contacts"+contact);
+    public static void editcontact(String firstname) {
+        for (ContactAddress contact : addressbook) {
+            if (contact.getFirstName().equalsIgnoreCase(firstname)) {
+                System.out.println("Editing Contacts" + contact);
                 Scanner scanner1 = new Scanner(System.in);
                 System.out.println("Enter your details \n Firstname \n lastname \n address \n city \n zip, \n phonenum \n email \n ");
                 contact.setFirstname(scanner1.nextLine());
@@ -50,10 +59,24 @@ public class AddressBook {
                 contact.setAddress(scanner1.nextLine());
                 contact.setCity(scanner1.nextLine());
                 contact.setZip(scanner1.nextInt());
-                contact.setPhoneNum((int) scanner1.nextLong());
-                scanner1.nextLine();
+                contact.setPhoneNum(scanner1.nextLong());
                 contact.setEmail(scanner1.nextLine());
                 System.out.println("Contact edited successfully.");
+            }
+        }
+    }
+    public static void delcontact(){
+        System.out.println("Enter the fname to delete:");
+        Scanner scanner4 = new Scanner(System.in);
+        String Conctodelete = scanner4.nextLine();
+
+        boolean contactFound = false;
+        for(ContactAddress contact:addressbook){
+            if(contact.getFirstName().equalsIgnoreCase(Conctodelete)){
+                addressbook.remove(contact);
+                contactFound = true;
+                System.out.println("Contact Deleted");
+                break;
             }
         }
     }

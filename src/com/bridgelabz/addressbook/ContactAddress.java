@@ -16,7 +16,7 @@ public class ContactAddress {
         Zip = zip;
         Phnum = phnum;
         Email = email;
-    }
+    } // Constructor ContactAddress
     public String getFirstName(){
         return Firstname;
     }
@@ -53,7 +53,7 @@ public class ContactAddress {
     public void setZip(int zip){
         Zip = zip;
     }
-    public void setPhoneNum(int phoneNum){
+    public void setPhoneNum(long phoneNum){
         Phnum = phoneNum;
     }
     public void setEmail(String email){
