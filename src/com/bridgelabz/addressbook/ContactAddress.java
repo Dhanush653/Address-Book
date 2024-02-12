@@ -1,75 +1,90 @@
 package com.bridgelabz.addressbook;
 
-public class ContactAddress {
-    String Firstname;
-    String Lastname;
-    String Address;
-    String City;
-    int Zip;
-    long Phnum;
-    String Email;
+class ContactAddress {
+    String firstName;
+    String lastName;
+    String address;
+    String city;
+    int zip;
+    long phoneNum;
+    String email;
 
-    public ContactAddress(String firstname, String lastname, String address, String city, int zip, long phnum, String email) {
-        Firstname = firstname;
-        Lastname = lastname;
-        Address = address;
-        City=city;
-        Zip = zip;
-        Phnum = phnum;
-        Email = email;
-    } // Constructor ContactAddress
-    public String getFirstName(){
-        return Firstname;
+    public ContactAddress(String firstName, String lastName, String address, String city, int zip, long phoneNum, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.zip = zip;
+        this.phoneNum = phoneNum;
+        this.email = email;
     }
-    public String getLastName(){
-        return Lastname;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public String getAddress(){
-        return Address;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    public String getCity(){
-        return City;
+
+    public String getLastName() {
+        return lastName;
     }
-    public int getZip(){
-        return Zip;
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-    public long getPhoneNum(){
-        return Phnum;
+
+    public String getAddress() {
+        return address;
     }
-    public String getEmail(){
-        return Email;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public void setFirstname(String firstname){
-        Firstname = firstname;
+
+    public String getCity() {
+        return city;
     }
-    public void setLastName(String lastName){
-        Lastname = lastName;
+
+    public void setCity(String city) {
+        this.city = city;
     }
-    public void setAddress(String address){
-        Address = address;
+
+    public int getZip() {
+        return zip;
     }
-    public void setCity(String city){
-        City = city;
+
+    public void setZip(int zip) {
+        this.zip = zip;
     }
-    public void setZip(int zip){
-        Zip = zip;
+
+    public long getPhoneNum() {
+        return phoneNum;
     }
-    public void setPhoneNum(long phoneNum){
-        Phnum = phoneNum;
+
+    public void setPhoneNum(long phoneNum) {
+        this.phoneNum = phoneNum;
     }
-    public void setEmail(String email){
-        Email = email;
+
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "ContactAddress{" +
-                "Firstname='" + Firstname + '\'' +
-                ", Lastname='" + Lastname + '\'' +
-                ", Address='" + Address + '\'' +
-                ", City='" + City + '\'' +
-                ", Zip=" + Zip +
-                ", Phnum=" + Phnum +
-                ", Email='" + Email + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", phoneNum=" + phoneNum +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
