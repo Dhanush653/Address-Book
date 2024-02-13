@@ -1,13 +1,13 @@
 package com.bridgelabz.addressbook;
 
 class ContactAddress {
-    String firstName;
-    String lastName;
-    String address;
-    String city;
-    int zip;
-    long phoneNum;
-    String email;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private int zip;
+    private long phoneNum;
+    private String email;
 
     public ContactAddress(String firstName, String lastName, String address, String city, int zip, long phoneNum, String email) {
         this.firstName = firstName;

@@ -1,5 +1,7 @@
 package com.bridgelabz.addressbook;
 import java.util.*;
+import java.util.stream.Collectors;
+
 
 class AddressBookManager {
     static Map<String, ArrayList<ContactAddress>> addressBooks = new HashMap<>();
@@ -25,14 +27,14 @@ class AddressBookManager {
             }
         }
     }
-    private static void createNewAddressBook() {
+    public static void createNewAddressBook() {
         System.out.println("Enter name for new Address Book:");
         String addressBookName = scanner.nextLine();
         addressBooks.put(addressBookName, new ArrayList<>());
         System.out.println("New Address Book '" + addressBookName + "' created successfully.");
     }
 
-    private static void accessExistingAddressBook() {
+    public static void accessExistingAddressBook() {
         System.out.println("Enter the name of the Address Book to access:");
         String addressBookName = scanner.nextLine();
 
@@ -59,7 +61,7 @@ class AddressBook {
             System.out.println("1. Add Contact");
             System.out.println("2. Edit Contact");
             System.out.println("3. Delete Contact");
-
+            System.out.println("4. Enter City To Search Names");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -73,12 +75,15 @@ class AddressBook {
                 case 3:
                     deleteContact();
                     break;
+                case 4:
+                    displayname();
+                    break;
                 default:
                     System.out.println("Please enter a valid option.");
             }
         }
     }
-    private void addContact() {
+    public void addContact() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Details: Firstname, Lastname, Address, City, Zip, Phnum, Email");
         String firstName = scanner.next();
@@ -102,7 +107,7 @@ class AddressBook {
         }
     }
 
-    private void editContact() {
+    public void editContact() {
         System.out.println("Enter the First name of the contact to edit:");
         String firstName = scanner.nextLine();
 
@@ -121,7 +126,7 @@ class AddressBook {
             }
         }
     }
-    private void deleteContact() {
+    public void deleteContact() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the firstname to delete:");
         String contactToDelete = scanner.next();
@@ -134,6 +139,16 @@ class AddressBook {
                 break;
             }
         }
+    }
+    public void displayname(){
+        System.out.println("Enter Name Of The City: ");
+        String cityname = scanner.nextLine();
+        List<String> name;
+        name = contacts.stream()
+                .filter(person -> person.getCity().equals(cityname))
+                .map(ContactAddress::getFirstName)
+                .collect(Collectors.toList());
+        System.out.println(name);
     }
 }
 
