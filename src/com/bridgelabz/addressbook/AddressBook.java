@@ -21,7 +21,7 @@ class AddressBookManager {
                     accessExistingAddressBook();
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
+                    System.out.println("Invalid, Please enter a valid option.");
             }
         }
     }
@@ -46,7 +46,7 @@ class AddressBookManager {
 }
 
 class AddressBook {
-    ArrayList<ContactAddress> contacts;
+    ArrayList<ContactAddress> contacts ;
     Scanner scanner = new Scanner(System.in);
 
     public AddressBook(ArrayList<ContactAddress> contacts) {
@@ -90,12 +90,22 @@ class AddressBook {
         String email = scanner.next();
         contacts.add(new ContactAddress(firstName, lastName, address, city, zip, phoneNum, email));
         System.out.println("Contact added successfully");
+
+        boolean isDuplicate = contacts.stream()
+                .anyMatch(contact -> contact.getFirstName().equalsIgnoreCase(firstName));
+
+        if (isDuplicate) {
+            System.out.println("Contact already exists with the same name. Duplicate entry not allowed.");
+        } else {
+            contacts.add(new ContactAddress(firstName, lastName, address, city, zip, phoneNum, email));
+            System.out.println("Contact added successfully");
+        }
     }
 
     private void editContact() {
         System.out.println("Enter the First name of the contact to edit:");
         String firstName = scanner.nextLine();
-        boolean contactFound = false;
+
         for (ContactAddress contact : contacts) {
             if (contact.getFirstName().equalsIgnoreCase(firstName)) {
                 System.out.println("Editing Contacts" + contact);
@@ -115,11 +125,11 @@ class AddressBook {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the firstname to delete:");
         String contactToDelete = scanner.next();
-        boolean contactFound = false;
+
         for (ContactAddress contact : contacts) {
             if (contact.getFirstName().equalsIgnoreCase(contactToDelete)) {
                 contacts.remove(contact);
-                contactFound = true;
+
                 System.out.println("Contact Deleted");
                 break;
             }
