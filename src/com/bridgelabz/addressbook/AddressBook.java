@@ -1,6 +1,5 @@
 package com.bridgelabz.addressbook;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 class AddressBookManager {
@@ -61,7 +60,6 @@ class AddressBook {
             System.out.println("1. Add Contact");
             System.out.println("2. Edit Contact");
             System.out.println("3. Delete Contact");
-            System.out.println("4. Enter City To Search Names");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -74,9 +72,6 @@ class AddressBook {
                     break;
                 case 3:
                     deleteContact();
-                    break;
-                case 4:
-                    displayname();
                     break;
                 default:
                     System.out.println("Please enter a valid option.");
@@ -93,9 +88,6 @@ class AddressBook {
         int zip = scanner.nextInt();
         long phoneNum = scanner.nextLong();
         String email = scanner.next();
-        contacts.add(new ContactAddress(firstName, lastName, address, city, zip, phoneNum, email));
-        System.out.println("Contact added successfully");
-
         boolean isDuplicate = contacts.stream()
                 .anyMatch(contact -> contact.getFirstName().equalsIgnoreCase(firstName));
 
@@ -139,16 +131,6 @@ class AddressBook {
                 break;
             }
         }
-    }
-    public void displayname(){
-        System.out.println("Enter Name Of The City: ");
-        String cityname = scanner.nextLine();
-        List<String> name;
-        name = contacts.stream()
-                .filter(person -> person.getCity().equals(cityname))
-                .map(ContactAddress::getFirstName)
-                .collect(Collectors.toList());
-        System.out.println(name);
     }
 }
 
