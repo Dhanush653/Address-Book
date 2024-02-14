@@ -84,7 +84,8 @@ class AddressBook {
             System.out.println("4. Search Person By City");
             System.out.println("5. Search Person By State");
             System.out.println("6. Number Of Contacts By State And City");
-            System.out.println("7. Go back");
+            System.out.println("7. See Contacts In Sorted Order");
+            System.out.println("8. Go back");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -108,6 +109,9 @@ class AddressBook {
                     numberofContactByCityAndState();
                     break;
                 case 7:
+                    sortingTheContacts();
+                    break;
+                case 8:
                     AddressBookManager.user();
                 default:
                     System.out.println("Please enter a valid option.");
@@ -193,6 +197,13 @@ class AddressBook {
         System.out.println("Number Of Contacts By states");
         stateMap.entrySet().stream()
                 .forEach(entry -> System.out.println(entry.getKey() + " Has " + entry.getValue().size() + " Contacts"));
+    }
+    public void sortingTheContacts(){
+        List<ContactAddress> sortedContacts = contacts.stream()
+                .sorted(Comparator.comparing(ContactAddress::getFirstName))
+                .toList();
+        // :: method reference
+        sortedContacts.forEach(System.out::println);
     }
 }
 
