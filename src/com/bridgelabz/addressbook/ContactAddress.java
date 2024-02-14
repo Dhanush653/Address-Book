@@ -5,15 +5,17 @@ class ContactAddress {
     private String lastName;
     private String address;
     private String city;
+    private String state;
     private int zip;
     private long phoneNum;
     private String email;
 
-    public ContactAddress(String firstName, String lastName, String address, String city, int zip, long phoneNum, String email) {
+    public ContactAddress(String firstName, String lastName, String address, String city,String state, int zip, long phoneNum, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.city = city;
+        this.state = state;
         this.zip = zip;
         this.phoneNum = phoneNum;
         this.email = email;
@@ -49,6 +51,14 @@ class ContactAddress {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getState(){
+        return state;
+    }
+
+    public void setState(String state){
+        this.state = state;
     }
 
     public int getZip() {
