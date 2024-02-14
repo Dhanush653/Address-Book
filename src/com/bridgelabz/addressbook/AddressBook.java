@@ -51,7 +51,6 @@ class AddressBookManager {
 }
 
 class AddressBook {
-
     ArrayList<ContactAddress> contacts;
     Map<String, List<ContactAddress>> cityMap = new HashMap<>();
     Map<String, List<ContactAddress>> stateMap = new HashMap<>();
@@ -133,7 +132,6 @@ class AddressBook {
             addToStateMap(new ContactAddress(firstName, lastName, address, city, state, zip, phoneNum, email));
             System.out.println("Contact added successfully");
         }
-
     }
     public void editContact() {
         System.out.println("Enter the First name of the contact to edit:");
@@ -171,28 +169,18 @@ class AddressBook {
     public void displayNamebycity() {
         System.out.println("Enter The Name of The City: ");
         String city = scanner.nextLine();
-        List<ContactAddress> personcity = cityMap.getOrDefault(city, new ArrayList<>()); //new ArrayList<>()- default value
-        if(personcity.isEmpty()){
-            System.out.println("Contact Not Found");
-        }
-        else{
-            for(ContactAddress person : personcity){
-                System.out.println(person.getFirstName() + " " + person.getLastName());
-            }
-        }
+        cityMap.entrySet().stream()
+                .filter(entry -> entry.getKey().equals(city))
+                .flatMap(entry -> entry.getValue().stream())
+                .forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
     }
     public void displayNamebystate(){
         System.out.println("Enter The Name Of the State: ");
         String state = scanner.next();
-        List<ContactAddress> personstate = stateMap.getOrDefault(state, new ArrayList<>());
-        if(personstate.isEmpty()){
-            System.out.println("No Contact Found");
-        }
-        else{
-            for(ContactAddress person : personstate){
-                System.out.println(person.getFirstName() + " " + person.getLastName());
-            }
-        }
+        stateMap.entrySet().stream()
+                .filter(entry -> entry.getKey().equals(state))
+                .flatMap(entry -> entry.getValue().stream())
+                .forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
     }
 }
 
