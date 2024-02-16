@@ -1,4 +1,6 @@
 package com.bridgelabz.addressbook;
+import jdk.incubator.vector.VectorOperators;
+
 import java.util.*;
 import java.util.stream.*;
 
@@ -84,7 +86,8 @@ class AddressBook {
             System.out.println("4. Search Person By City");
             System.out.println("5. Search Person By State");
             System.out.println("6. Number Of Contacts By State And City");
-            System.out.println("7. See Contacts In Sorted Order");
+            System.out.println("7. See Contacts In Sorted Order(According To Name)");
+            System.out.println("8. See Contacts In Sorted Order(According To State)");
             System.out.println("8. Go back");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -109,9 +112,12 @@ class AddressBook {
                     numberofContactByCityAndState();
                     break;
                 case 7:
-                    sortingTheContacts();
+                    sortingTheContactsByName();
                     break;
                 case 8:
+                    sortingTheContactsByState();
+                    break;
+                case 9:
                     AddressBookManager.user();
                 default:
                     System.out.println("Please enter a valid option.");
@@ -198,12 +204,20 @@ class AddressBook {
         stateMap.entrySet().stream()
                 .forEach(entry -> System.out.println(entry.getKey() + " Has " + entry.getValue().size() + " Contacts"));
     }
-    public void sortingTheContacts(){
+    public void sortingTheContactsByName(){
         List<ContactAddress> sortedContacts = contacts.stream()
                 .sorted(Comparator.comparing(ContactAddress::getFirstName))
                 .toList();
+        System.out.println("The Sorted Contact According to First name is: ");
         // :: method reference
-        sortedContacts.forEach(System.out::println);
+        sortedContacts.forEach(n -> System.out.println(n));
+    }
+    public void sortingTheContactsByState(){
+        List<ContactAddress> sortedContacts = contacts.stream()
+                .sorted(Comparator.comparing(ContactAddress::getState))
+                .toList();
+        System.out.println("The Sorted Contact According to State is: ");
+        sortedContacts.forEach(n -> System.out.println(n));
     }
 }
 
